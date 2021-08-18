@@ -1,28 +1,21 @@
 import React from 'react'
-import * as R from 'ramda'
-
-import { getEntriesList } from '../utils/helpers'
 
 import { usePrevious } from './usePrevious'
 
-export const useWhyDidYouRender = (component, props) => {
+export const useWhyDidYouRender = (componentName, props) => {
   const previousProps = usePrevious(props)
 
   React.useEffect(() => {
-    const [difference] = R.difference(
-      getEntriesList(props),
-      getEntriesList(previousProps)
-    )
+    const difference = props !== previousProps
 
     if (difference) {
-      const label = `${component} (props difference)`
+      const label = `${componentName} (props difference)`
       console.group(label)
       console.log({
-        difference,
         previousProps,
         props,
       })
       console.groupEnd(label)
     }
-  }, [previousProps, component, props])
+  }, [previousProps, componentName, props])
 }
