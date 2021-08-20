@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { Button } from './components/Button'
-import { DumbComponent } from './components/DumbComponent'
+import { CorrectUsages } from './components/CorrectUsages'
 
 const App = () => {
   return (
@@ -10,8 +10,8 @@ const App = () => {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <Button>Click me</Button>
-        <DumbComponent />
+        <Button>Click me</Button> <br />
+        <CorrectUsages />
       </header>
     </div>
   )

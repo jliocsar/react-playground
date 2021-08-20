@@ -17,6 +17,8 @@ export const Button = React.memo(function Button({ children }) {
   // This is why we don't have to memoize simple strings, numbers or booleans:
   // Primitive values are stored in the stack rather than in the heap
   // (which might be faster -- static memory allocation vs dynamic memory allocation)
+  // Keep in mind that `useMemo` should be used carefully -- see the `CorrectUsages` component
+  // for more details about its pitfalls
   const dumbComponentProps = React.useMemo(
     () =>
       console.log(COMPONENT_NAME, '(calculated the text object again)') ?? {
@@ -26,7 +28,7 @@ export const Button = React.memo(function Button({ children }) {
   )
 
   // `eslint-plugin-react-hooks` will complain if an arrow function is passed
-  // as props directly, as it'll cause reconciliation issues (same case as the above 👆)
+  // as props directly, as it'll cause reconciliation issues
   // so we have to wrap this around an `useCallback` hook
   const onClick = React.useCallback(() => setClicks(prev => prev + 1), [])
 
