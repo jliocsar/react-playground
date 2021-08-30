@@ -5,7 +5,7 @@ export const useMemoCompare = (next, compare) => {
   const previous = previousRef.current
 
   const isEqual = React.useMemo(
-    () => compare?.(previous, next) ?? previous === next,
+    () => compare?.(previous, next) ?? Object.is(previous, next),
     [compare, next, previous]
   )
 
